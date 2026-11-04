@@ -3,25 +3,21 @@ body {
   color: white;
   font-family: 'Oswald', sans-serif;
 
-  /* Toàn bộ trang vừa đúng chiều cao màn hình */
+  /* Added: prevent the whole page from scrolling */
   height: 100vh;
-  margin: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  /* Không cho cả trang scroll */
   overflow: hidden;
 }
-
-/* ================= HEADER ================= */
 
 header {
   text-align: center;
   margin-top: 5px;
 
-  /* Header không bị co lại khi bảng dài */
-  flex-shrink: 0;
+  /* Added: keep header fixed */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 h1 {
@@ -48,21 +44,8 @@ h3 {
   letter-spacing: 0.8px;
 }
 
-/* ================= TABLE ================= */
-
-.container {
-  max-width: 940px;
-  width: 100%;
-  margin: 0 auto;
-
-  /* Chiếm toàn bộ khoảng trống giữa header và footer */
-  flex: 1;
-
-  /* Chỉ khu vực này được scroll */
-  overflow-y: auto;
-
-  /* Quan trọng khi dùng flex */
-  min-height: 0;
+th {
+  border: 2px solid #8c6b48;
 }
 
 table {
@@ -70,32 +53,38 @@ table {
   margin: 20px auto;
 }
 
-th {
-  border: 2px solid #8c6b48;
-}
-
 td {
   border: 2px solid #8c6b48;
   width: 300px;
 }
 
-.left {
-  width: 150px;
-}
-
-/* ================= FOOTER ================= */
-
 footer {
+  margin-top: 50px;
   text-align: center;
+  position: fixed;
   width: 100%;
+  bottom: 0;
   background-color: #242f44;
-
-  /* Footer luôn ở dưới, không tham gia scroll */
-  flex-shrink: 0;
+  z-index: 10;
 }
 
 footer h3 {
   display: inline-block;
   font-size: 14px;
   background-color: #242f44;
+}
+
+.container {
+  max-width: 940px;
+  margin: 0 auto;
+
+  /* Changed: only the table area can scroll */
+  height: calc(100vh - 180px);
+  margin-top: 90px;
+  margin-bottom: 90px;
+  overflow-y: auto;
+}
+
+.left {
+  width: 150px;
 }
